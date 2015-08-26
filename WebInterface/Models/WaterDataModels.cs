@@ -8,6 +8,12 @@ using System.Data.Entity.Spatial;
 
 namespace WebInterface.Models
 {
+    public class WaterContext : DbContext
+    {
+        public DbSet<Station> Stations { get; set; }
+        public DbSet<Sample> Samples { get; set; }
+    }
+
     public class Station
     {
         [Key]
