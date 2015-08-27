@@ -39,14 +39,15 @@
 
             context.SaveChanges();
 
+            context.Samples.RemoveRange(context.Samples.ToList());
+
+            context.SaveChanges();
+
             var baseTime = DateTime.Now.AddMinutes(-10000);
             Random rnd = new Random();
 
             foreach (var station in context.Stations)
             {
-                station.Samples.Clear();
-                context.SaveChanges();
-
                 int oxyScale = rnd.Next(20, 40);
                 int phScale = rnd.Next(5, 15);
 
