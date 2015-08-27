@@ -22,8 +22,11 @@ namespace WebInterface.Models
         [Display(Name = "Station Name")]
         public String Name { get; set; }
 
-        [Display(Name = "Station Location")]
-        public DbGeography Location { get; set; }
+        [Display(Name = "Station Latitude")]
+        public Double Latitude { get; set; }
+
+        [Display(Name = "Station Longitude")]
+        public Double Longitude { get; set; }
 
         public virtual List<Sample> Samples { get; set; }
     }
