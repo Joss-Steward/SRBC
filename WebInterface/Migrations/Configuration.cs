@@ -4,6 +4,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using WebInterface.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebInterface.Models.WaterContext>
     {
@@ -14,18 +15,56 @@
 
         protected override void Seed(WebInterface.Models.WaterContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Stations.AddOrUpdate(
+                s => s.Name,
+                new Station
+                {
+                    Name = "Falling Spring",
+                    Latitude = 39.911993,
+                    Longitude = -77.616965
+                },
+                new Station
+                {
+                    Name = "Grace Island",
+                    Latitude = 39.974582,
+                    Longitude = -76.470649
+                },
+                new Station
+                {
+                    Name = "Delaware River",
+                    Latitude = 39.716926,
+                    Longitude = -75.500009
+                }
+            );
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.SaveChanges();
+
+            var baseTime = DateTime.Now.AddMinutes(-10000);
+            Random rnd = new Random();
+
+            foreach (var station in context.Stations)
+            {
+                int oxyScale = rnd.Next(20, 40);
+                int phScale = rnd.Next(5, 15);
+
+                for (int i = 0; i < 10000; i++)
+                {
+                    var record = new Sample
+                    {
+                        Station = station,
+                        DateTime = baseTime.AddMinutes(i),
+                        Oxygen = (oxyScale * Math.Sin(i)) + (rnd.NextDouble() * 5),
+                        PH = (phScale * Math.Cos(i + rnd.NextDouble())) + 3,
+                        SC = (10 * Math.Sin(i)) + 45,
+                        Temperature = (10 * Math.Cos(i)),
+                        Turbidity = (20 * Math.Sin(i)) + 30
+                    };
+
+                    station.Samples.Add(record);
+                }
+            }
+
+            context.SaveChanges();
         }
     }
 }
