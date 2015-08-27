@@ -44,13 +44,15 @@
 
             foreach (var station in context.Stations)
             {
+                station.Samples.Clear();
+                context.SaveChanges();
+
                 int oxyScale = rnd.Next(20, 40);
                 int phScale = rnd.Next(5, 15);
 
                 for (int i = 0; i < 10000; i++)
                 {
-                    var record = new Sample
-                    {
+                    station.Samples.Add(new Sample {
                         Station = station,
                         DateTime = baseTime.AddMinutes(i),
                         Oxygen = (oxyScale * Math.Sin(i)) + (rnd.NextDouble() * 5),
@@ -58,9 +60,7 @@
                         SC = (10 * Math.Sin(i)) + 45,
                         Temperature = (10 * Math.Cos(i)),
                         Turbidity = (20 * Math.Sin(i)) + 30
-                    };
-
-                    station.Samples.Add(record);
+                    });
                 }
             }
 
