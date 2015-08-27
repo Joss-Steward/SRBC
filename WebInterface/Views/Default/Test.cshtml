@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebInterface.Models.Sample>
+
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+<table class="ui celled table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Turbidity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Oxygen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temperature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turbidity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Oxygen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SampleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SampleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SampleId })
+        </td>
+    </tr>
+}
+
+</table>
