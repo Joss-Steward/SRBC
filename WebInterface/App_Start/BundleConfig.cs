@@ -17,6 +17,12 @@ namespace WebInterface.App_Start
             bundles.Add(new ScriptBundle("~/scripts/semanticui").Include(
                 "~/Content/semanticui/semantic.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/scripts/flot").Include(
+                "~/Content/flot/jquery.flot.js",
+                "~/Content/flot/jquery.flot.time.js",
+                "~/Content/flot/jquery.colorhelpers.js"
+                ));
         }
     }
 }
