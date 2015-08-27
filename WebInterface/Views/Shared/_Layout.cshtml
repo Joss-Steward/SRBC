@@ -24,9 +24,9 @@
                 <i class="block layout icon"></i>
                 Test
             </a>
-            <a class="item">
+            <a class="item" href="@Url.Action("Chart")">
                 <i class="smile icon"></i>
-                Friends
+                Chart
             </a>
             <a class="item">
                 <i class="calendar icon"></i>
@@ -51,6 +51,7 @@
     </div>
 
     @Scripts.Render("~/scripts/semanticui")
+    @Scripts.Render("~/scripts/flot")
 
     <script type="text/javascript">
         $('.left.sidebar').first().sidebar('attach events', '#toggle-button');
