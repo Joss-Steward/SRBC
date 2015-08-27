@@ -11,11 +11,11 @@ namespace WebInterface.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/styles/semanticui").Include(
-                "~/Content/semantic.css"
+                "~/Content/semanticui/semantic.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/semanticui").Include(
-                "~/Content/semantic.js"
+                "~/Content/semanticui/semantic.js"
                 ));
         }
     }
