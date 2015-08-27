@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/styles/semanticui")
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <div class="ui top attached demo menu">
+        <a class="item" id="toggle-button">
+            <i class="sidebar icon"></i>
+            Menu
+        </a>
+    </div>
+    <div class="ui bottom attached segment">
+        <div class="ui left vertical inverted labeled icon sidebar menu">
+            <a class="item">
+                <i class="home icon"></i>
+                Home
+            </a>
+            <a class="item">
+                <i class="block layout icon"></i>
+                Topics
+            </a>
+            <a class="item">
+                <i class="smile icon"></i>
+                Friends
+            </a>
+            <a class="item">
+                <i class="calendar icon"></i>
+                History
+            </a>
+            <a class="item">
+                <i class="mail icon"></i>
+                Messages
+            </a>
+            <a class="item">
+                <i class="chat icon"></i>
+                Discussions
+            </a>
+            <a class="item">
+                <i class="trophy icon"></i>
+                Achievements
+            </a>
+        </div>
+        <div class="pusher">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/scripts/semanticui")
+
+    <script type="text/javascript">
+        $('.left.sidebar').first().sidebar('attach events', '#toggle-button');
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
